@@ -6,6 +6,16 @@
   margin: 0 auto;
   padding: 1.5rem 1.25rem 6rem;
   position: relative;
+  touch-action: pan-y; /* permite swipe horizontal sem brigar com o scroll vertical */
+}
+
+.tab-content {
+  animation: tab-fade-in 0.18s ease-out;
+}
+
+@keyframes tab-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .app-header {
