@@ -1,0 +1,11 @@
+{
+  "appId": "com.leitorqr.app",
+  "appName": "Leitor QR",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": true
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}
