@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import jsQR from 'jsqr';
+import { feedback } from '../lib/feedback';
 
 export default function Scanner({ onResult }) {
   const [scanning, setScanning] = useState(false);
@@ -42,7 +43,7 @@ export default function Scanner({ onResult }) {
           });
           if (code && code.data) {
             setJustScanned(true);
-            if (navigator.vibrate) navigator.vibrate(100);
+            feedback.success();
             stopScanner();
             onResult(code.data);
             return;

@@ -94,27 +94,29 @@ export default function App() {
 
   return (
     <div
-      className={`app ${auth.loggedIn ? 'autenticado' : ''}`}
+      className={`shell ${auth.loggedIn ? 'autenticado' : ''}`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
       <Header auth={auth} onOpenLogin={() => setShowAuthModal(true)} onLogout={handleLogout} />
 
-      <TabNav active={activeTab} onChange={setActiveTab} isLoggedIn={auth.loggedIn} />
+      <main className="shell-main" key={activeTab}>
+        <div className="tab-content">
+          {activeTab === 'leitor' && <LeitorTab />}
+          {activeTab === 'buscar' && (
+            <BuscarTab
+              isLoggedIn={auth.loggedIn}
+              jumpToProduct={jumpToProduct}
+              onJumpConsumed={() => setJumpToProduct(null)}
+            />
+          )}
+          {activeTab === 'recorrentes' && <RecorrentesTab onVerProduto={handleVerProdutoRecorrente} />}
+          {activeTab === 'historico' && <HistoricoTab />}
+          {activeTab === 'mesclagens' && auth.loggedIn && <MesclagensTab />}
+        </div>
+      </main>
 
-      <div className="tab-content" key={activeTab}>
-        {activeTab === 'leitor' && <LeitorTab />}
-        {activeTab === 'buscar' && (
-          <BuscarTab
-            isLoggedIn={auth.loggedIn}
-            jumpToProduct={jumpToProduct}
-            onJumpConsumed={() => setJumpToProduct(null)}
-          />
-        )}
-        {activeTab === 'recorrentes' && <RecorrentesTab onVerProduto={handleVerProdutoRecorrente} />}
-        {activeTab === 'historico' && <HistoricoTab />}
-        {activeTab === 'mesclagens' && auth.loggedIn && <MesclagensTab />}
-      </div>
+      <TabNav active={activeTab} onChange={setActiveTab} isLoggedIn={auth.loggedIn} />
 
       {showAuthModal && (
         <AuthModal onClose={() => setShowAuthModal(false)} onAuthenticated={handleAuthenticated} />

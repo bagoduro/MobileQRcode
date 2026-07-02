@@ -1,30 +1,118 @@
 :root {
-  --bg-app: #f1efe9;
+  /* ── LIGHT (padrão) ────────────────────────────────────────── */
+  --bg-app: #f6f8f5;
   --bg-primary: #ffffff;
-  --bg-secondary: #f4f3ee;
-  --bg-tertiary: #ebe9e2;
-  --text-primary: #1f1f1d;
-  --text-secondary: #6b6a66;
-  --text-tertiary: #9a9893;
-  --border: rgba(0, 0, 0, 0.09);
-  --border-strong: rgba(0, 0, 0, 0.16);
-  --accent: #0f6e56;
-  --accent-dark: #0a5a45;
-  --accent-bg: #e1f5ee;
-  --accent-text: #085041;
-  --danger: #993c1d;
-  --danger-bg: #faece7;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 22px;
-  --shadow-card: 0 1px 2px rgba(20, 20, 18, 0.04), 0 8px 24px rgba(20, 20, 18, 0.05);
-  --shadow-pop: 0 12px 32px rgba(20, 20, 18, 0.16);
+  --bg-secondary: #eef2ea;
+  --bg-tertiary: #e2e9dc;
+  --bg-elevated: #ffffff;
+
+  --text-primary: #10160f;
+  --text-secondary: #5c665a;
+  --text-tertiary: #8b958a;
+
+  --border: rgba(16, 24, 14, 0.09);
+  --border-strong: rgba(16, 24, 14, 0.17);
+
+  --accent: #86d100;
+  --accent-dark: #6aab00;
+  --accent-bg: rgba(97, 163, 0, 0.12);
+  --accent-text: #4d7a00;
+  --accent-on: #0c1408;
+
+  --danger: #d13c1f;
+  --danger-bg: rgba(209, 60, 31, 0.1);
+  --danger-on: #ffffff;
+  --warning: #b3791a;
+  --warning-bg: rgba(179, 121, 26, 0.12);
+
+  /* ── Cores por categoria (identidade visual de cada aba) ─────── */
+  --cat-leitor: #61a300;
+  --cat-leitor-bg: rgba(97, 163, 0, 0.13);
+  --cat-buscar: #1c7ed6;
+  --cat-buscar-bg: rgba(28, 126, 214, 0.12);
+  --cat-recorrentes: #8b5cf6;
+  --cat-recorrentes-bg: rgba(139, 92, 246, 0.12);
+  --cat-historico: #d68a0c;
+  --cat-historico-bg: rgba(214, 138, 12, 0.13);
+  --cat-mesclagens: #e0568c;
+  --cat-mesclagens-bg: rgba(224, 86, 140, 0.12);
+
+  --shadow-card: 0 1px 2px rgba(16, 24, 14, 0.04), 0 10px 26px -10px rgba(16, 24, 14, 0.14);
+  --shadow-card-hover: 0 1px 2px rgba(16, 24, 14, 0.05), 0 16px 34px -10px rgba(16, 24, 14, 0.18);
+  --shadow-pop: 0 26px 64px -14px rgba(10, 16, 8, 0.32);
+  --shadow-dock: 0 -1px 0 rgba(255, 255, 255, 0.7) inset, 0 16px 40px -12px rgba(10, 16, 8, 0.26);
+  --shadow-accent-glow: 0 6px 18px -4px rgba(97, 163, 0, 0.4);
+
+  /* ── Forma ─────────────────────────────────────────────────── */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 26px;
+
+  /* ── Tipografia ────────────────────────────────────────────── */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Sora', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* ── Mobile-safe ───────────────────────────────────────────── */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+/* ── DARK (automático, conforme o sistema) ──────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-app: #0b0f0e;
+    --bg-primary: #141a18;
+    --bg-secondary: #1a2220;
+    --bg-tertiary: #212b28;
+    --bg-elevated: #1e2624;
+
+    --text-primary: #f3f6f4;
+    --text-secondary: #9aa8a2;
+    --text-tertiary: #667069;
+
+    --border: rgba(220, 235, 228, 0.08);
+    --border-strong: rgba(220, 235, 228, 0.16);
+
+    --accent: #b6ff3c;
+    --accent-dark: #8fe000;
+    --accent-bg: rgba(182, 255, 60, 0.12);
+    --accent-text: #b6ff3c;
+    --accent-on: #0c1408;
+
+    --danger: #ff5c5c;
+    --danger-bg: rgba(255, 92, 92, 0.13);
+    --danger-on: #2a0505;
+    --warning: #ffb020;
+    --warning-bg: rgba(255, 176, 32, 0.13);
+
+    --cat-leitor: #b6ff3c;
+    --cat-leitor-bg: rgba(182, 255, 60, 0.14);
+    --cat-buscar: #5aa9ff;
+    --cat-buscar-bg: rgba(90, 169, 255, 0.15);
+    --cat-recorrentes: #b18aff;
+    --cat-recorrentes-bg: rgba(177, 138, 255, 0.15);
+    --cat-historico: #ffc44d;
+    --cat-historico-bg: rgba(255, 196, 77, 0.15);
+    --cat-mesclagens: #ff85b3;
+    --cat-mesclagens-bg: rgba(255, 133, 179, 0.15);
+
+    --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 10px 24px -10px rgba(0, 0, 0, 0.55);
+    --shadow-card-hover: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 16px 32px -10px rgba(0, 0, 0, 0.6);
+    --shadow-pop: 0 30px 70px -14px rgba(0, 0, 0, 0.75);
+    --shadow-dock: 0 -18px 40px -14px rgba(0, 0, 0, 0.6), 0 4px 18px rgba(0, 0, 0, 0.5);
+    --shadow-accent-glow: 0 6px 20px -4px rgba(182, 255, 60, 0.45);
+
+    color-scheme: dark;
+  }
 }
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
@@ -33,23 +121,81 @@ body {
   padding: 0;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  color-scheme: light dark;
+}
+
 body {
   font-family: var(--font-sans);
-  background: linear-gradient(180deg, #f7f5ef 0%, var(--bg-app) 220px);
+  background:
+    radial-gradient(600px 340px at 8% -8%, var(--accent-bg), transparent 60%),
+    var(--bg-app);
+  background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+  min-height: 100vh;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 #root {
   min-height: 100vh;
 }
 
-button {
-  font-family: inherit;
+/* ── Sensação de app nativo: sem delay de toque, sem seleção   ──
+   acidental de texto em elementos interativos, sem double-tap zoom */
+button,
+.tab-btn,
+.item-card,
+.sugestao-item,
+.loja-card,
+a {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 input,
-select {
+select,
+textarea {
   font-family: inherit;
+  touch-action: manipulation;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-on);
+}
+
+a {
+  color: var(--accent-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

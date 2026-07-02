@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Loading, EmptyState, Alert } from '../components/Feedback';
+import { SectionCard, StatPill, IconTile } from '../components/ui';
 import { apiGet } from '../lib/api';
 import { formatValor, formatData } from '../lib/format';
 
@@ -26,8 +27,7 @@ export default function RecorrentesTab({ onVerProduto }) {
 
   return (
     <section className="panel active">
-      <div className="card">
-        <h2>Itens que você compra com frequência</h2>
+      <SectionCard icon="ti-repeat" tone="recorrentes" title="Itens que você compra com frequência">
         <div className="field">
           <label htmlFor="select-min">Mínimo de compras para considerar recorrente</label>
           <select id="select-min" value={minCompras} onChange={(e) => setMinCompras(e.target.value)}>
@@ -48,17 +48,20 @@ export default function RecorrentesTab({ onVerProduto }) {
           )}
           {!loading && itens.length > 0 && (
             <>
-              <p className="helper helper-spaced">
-                {resultado.total} item(ns) comprados {resultado.criterio_minimo_compras}+ vezes. Toque em um item para ver o histórico completo.
-              </p>
+              <StatPill icon="ti-info-circle" tone="recorrentes">
+                {resultado.total} item(ns) comprados {resultado.criterio_minimo_compras}+ vezes
+              </StatPill>
               <div className="item-list">
                 {itens.map((item, idx) => {
                   const mesmoLocal = item.ultima_compra.local === item.menor_preco.local;
                   return (
-                    <div className="item-card" key={idx} onClick={() => onVerProduto(item.descricao || '')}>
-                      <div className="top-row">
-                        <p>{item.descricao || 'Item'}</p>
-                        <span>{item.vezes_comprado}x comprado</span>
+                    <div className="item-card item-card--recorrente" key={idx} onClick={() => onVerProduto(item.descricao || '')}>
+                      <div className="item-card-avatar-row">
+                        <IconTile icon="ti-repeat" tone="recorrentes" size="sm" />
+                        <div className="top-row">
+                          <p>{item.descricao || 'Item'}</p>
+                          <span>{item.vezes_comprado}x</span>
+                        </div>
                       </div>
                       <div className="meta">
                         Última vez: {formatValor(item.ultima_compra.valor_total)} em {item.ultima_compra.local || '-'} ({formatData(item.ultima_compra.data_compra)})
@@ -74,7 +77,7 @@ export default function RecorrentesTab({ onVerProduto }) {
             </>
           )}
         </div>
-      </div>
+      </SectionCard>
     </section>
   );
 }

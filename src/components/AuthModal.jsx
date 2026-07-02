@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { authSubmit, setToken } from '../lib/api';
+import { feedback } from '../lib/feedback';
 
 const COPY = {
   login: {
@@ -39,6 +40,7 @@ export default function AuthModal({ onClose, onAuthenticated }) {
   async function handleSubmit() {
     setError('');
     if (!username.trim() || !password) {
+      feedback.warn();
       setError('Preencha usuário e senha.');
       return;
     }
@@ -46,8 +48,10 @@ export default function AuthModal({ onClose, onAuthenticated }) {
     try {
       const data = await authSubmit(mode, username.trim(), password);
       setToken(data.token);
+      feedback.success();
       onAuthenticated(data.username || username.trim());
     } catch (err) {
+      feedback.error();
       setError(err.message || 'Erro ao autenticar.');
     } finally {
       setLoading(false);

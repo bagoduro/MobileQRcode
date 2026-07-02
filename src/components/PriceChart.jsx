@@ -29,7 +29,10 @@ export default function PriceChart({ historico }) {
       return Number.isFinite(v) ? v : null;
     });
 
-    const corLinha = '#1D9E75';
+    const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const corLinha = isDark ? '#b6ff3c' : '#6aab00';
+    const corTexto = isDark ? '#9aa8a2' : '#5c665a';
+    const corGrid = isDark ? 'rgba(220,235,228,0.1)' : 'rgba(16,24,14,0.1)';
 
     chartRef.current?.destroy();
     chartRef.current = new Chart(canvasRef.current, {
@@ -66,12 +69,13 @@ export default function PriceChart({ historico }) {
         scales: {
           x: {
             grid: { display: false },
-            ticks: { font: { size: 11 } },
+            ticks: { font: { size: 11 }, color: corTexto },
           },
           y: {
-            grid: { color: 'rgba(128,128,128,0.15)' },
+            grid: { color: corGrid },
             ticks: {
               font: { size: 11 },
+              color: corTexto,
               callback: (v) => `R$ ${Number(v).toFixed(2).replace('.', ',')}`,
             },
           },

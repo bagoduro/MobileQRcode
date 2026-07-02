@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Loading, EmptyState, Alert } from '../components/Feedback';
+import { SectionCard, ListRow, StatPill } from '../components/ui';
 import ConfirmModal from '../components/ConfirmModal';
 import { apiDelete, apiGet } from '../lib/api';
 import { formatValor, formatData } from '../lib/format';
@@ -50,12 +51,16 @@ export default function HistoricoTab() {
 
   return (
     <section className="panel active">
-      <div className="card">
-        <h2>Suas notas registradas</h2>
-        <button className="btn full" onClick={carregar}>
-          <i className="ti ti-refresh" aria-hidden="true" /> Atualizar lista
-        </button>
-
+      <SectionCard
+        icon="ti-receipt"
+        tone="historico"
+        title="Suas notas registradas"
+        actions={
+          <button className="btn-icon-refresh" onClick={carregar} aria-label="Atualizar lista">
+            <i className="ti ti-refresh" aria-hidden="true" />
+          </button>
+        }
+      >
         <div className="result-area">
           {loading && <Loading text="Carregando suas compras..." />}
           {!loading && error && <Alert tone="danger">{error}</Alert>}
@@ -64,7 +69,7 @@ export default function HistoricoTab() {
           )}
           {!loading && compras && compras.length > 0 && (
             <>
-              <p className="helper helper-spaced">{compras.length} nota(s) registrada(s).</p>
+              <StatPill icon="ti-list-check" tone="historico">{compras.length} nota(s) registrada(s)</StatPill>
               <div className="item-list">
                 {compras.map((c, idx) => (
                   <div className={`item-card ${expandedIdx === idx ? 'expanded' : ''} ${deletingIdx === idx ? 'removing' : ''}`} key={c.url || idx}>
@@ -79,15 +84,17 @@ export default function HistoricoTab() {
                       {(c.itens || []).length === 0 ? (
                         <EmptyState icon="ti-package-off" text="Nenhum item registrado" />
                       ) : (
-                        c.itens.map((item, i) => (
-                          <div className="result-row" key={i}>
-                            <div className="info">
-                              <p>{item.descricao || 'Item'}</p>
-                              <p>Cód: {item.codigo || '-'} • Qtd: {item.quantidade || '-'}</p>
-                            </div>
-                            <div className="value">{formatValor(item.valor_total)}</div>
-                          </div>
-                        ))
+                        <div className="list-stack">
+                          {c.itens.map((item, i) => (
+                            <ListRow
+                              key={i}
+                              tone="historico"
+                              title={item.descricao || 'Item'}
+                              meta={`Cód: ${item.codigo || '-'} • Qtd: ${item.quantidade || '-'}`}
+                              value={formatValor(item.valor_total)}
+                            />
+                          ))}
+                        </div>
                       )}
                       <button
                         className="btn-excluir-nota somente-logado"
@@ -102,7 +109,7 @@ export default function HistoricoTab() {
             </>
           )}
         </div>
-      </div>
+      </SectionCard>
 
       {pendingDelete && (
         <ConfirmModal
